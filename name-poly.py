@@ -103,7 +103,7 @@ class Controller(polyinterface.Controller):
         """
         Example
         Do discovery here. Does not have to be called discovery. Called from example
-        controller start method.
+        controller start method and from DISCOVER command recieved from ISY as an exmaple.
         """
         self.addNode(MyNode(self, self.address, 'myaddress', 'My Node Name'))
 
@@ -113,12 +113,12 @@ class Controller(polyinterface.Controller):
     So it needs to know the drivers/commands and what id it will use. These are
     the defaults in the parent Class, so you don't need them unless you want to add to
     them. The ST and GV1 variables are for reporting status through Polyglot to ISY,
-    DO NOT remove them. UOM 25 is boolean.
+    DO NOT remove them. UOM 2 is boolean.
     """
     id = 'controller'
     commands = {'DISCOVER': discover}
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 25},
-                {'driver': 'GV1', 'value': 0, 'uom': 25}]
+    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2},
+                {'driver': 'GV1', 'value': 0, 'uom': 2}]
 
 
 class MyNode(polyglotinterface.Node):
@@ -186,15 +186,15 @@ class MyNode(polyglotinterface.Node):
         self.reportDrivers()
 
 
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 25}]
+    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     """
     Optional.
     This is an array of dictionary items containing the variable names(drivers)
     values and uoms(units of measure) from ISY. This is how ISY knows what kind
     of variable to display. Check the UOM's in the WSDK for a complete list.
-    UOM 25 is boolean so the ISY will display 'True/False'
+    UOM 2 is boolean so the ISY will display 'True/False'
     """
-    id = 'mynode'
+    id = 'mynodetype'
     """
     id of the node from the nodedefs.xml that is in the profile.zip. This tells
     the ISY what fields and commands this node has.
@@ -228,5 +228,5 @@ if __name__ == "__main__":
     except (KeyboardInterrupt, SystemExit):
         sys.exit(0)
         """
-        Catch SIGTERM or Control-C and exit cleanly. 
+        Catch SIGTERM or Control-C and exit cleanly.
         """

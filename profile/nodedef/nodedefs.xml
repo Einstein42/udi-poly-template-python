@@ -1,8 +1,12 @@
 <nodeDefs>
-    <!-- LIFX Control -->
-    <nodeDef id="lifxcontrol" nls="lifx">
+    <!-- NODE DEF from 5.0 document http://wiki.universal-devices.com/index.php?title=V50_MAIN -->
+    <!-- controller -->
+    <nodeDef id="controller" nls="ctl">
         <editors />
-        <sts />
+        <sts>
+			<st id="ST" editor="bool" />
+			<st id="GV1" editor="bool" />
+		</sts>
         <cmds>
             <sends />
             <accepts>
@@ -10,162 +14,17 @@
             </accepts>
         </cmds>
     </nodeDef>
-    <!-- NODE DEF from 5.0 document http://wiki.universal-devices.com/index.php?title=V50_MAIN -->
-	<!-- LIFX MultiZone Bulb -->
-    <nodeDef id="lifxmultizone" nls="lifxmz">
+	<!-- mynodetype -->
+    <nodeDef id="mynodetype" nls="mynode">
         <editors />
         <sts>
-            <st id="ST" editor="lifxpower" />
-            <st id="GV1" editor="lifxclr" />
-            <st id="GV2" editor="lifxclr" />
-            <st id="GV3" editor="lifxclr" />
-			<st id="GV4" editor="lifxzone" />
-            <st id="CLITEMP" editor="lifxkelvin" />
-            <st id="RR" editor="lifxduration" />
-            <st id="GV5" editor="lifxpower" />
-            <st id="GV6" editor="lifxuptime" />
+            <st id="ST" editor="bool" />
         </sts>
         <cmds>
             <sends />
             <accepts>
                 <cmd id="DON" />
                 <cmd id="DOF" />
-                <cmd id="QUERY" />
-				<cmd id="APPLY" />
-                <cmd id="SET_COLOR">
-                   <p id="" editor="lifxchoice" />
-                </cmd>
-                <cmd id="SETH">
-                    <p id="" editor="lifxclr" init="GV1"/>
-                </cmd>
-                <cmd id="SETS">
-                    <p id="" editor="lifxclr" init="GV2"/>
-                </cmd>
-                <cmd id="SETB">
-                    <p id="" editor="lifxclr" init="GV3" />
-                </cmd>
-                <cmd id="SETK">
-                    <p id="" editor="lifxkelvin" init="CLITEMP" />
-                </cmd>
-                <cmd id="SETD">
-                    <p id="" editor="lifxduration" init="RR" />
-                </cmd>
-                <cmd id="SETZ">
-                    <p id="" editor="lifxzone" init="GV4" />
-                </cmd>
-                <cmd id="SET_HSBKDZ">
-                    <p id="H" editor="lifxclr" init="GV1" />
-                    <p id="S" editor="lifxclr" init="GV2" />
-                    <p id="B" editor="lifxclr" init="GV3" />
-                    <p id="K" editor="lifxkelvin" init="CLITEMP" />
-                    <p id="D" editor="lifxduration" init="RR" />
-					<p id="Z" editor="lifxzone" init="GV4" />
-                </cmd>
-            </accepts>
-        </cmds>
-    </nodeDef>
-    <!-- LIFX Color Bulb -->
-    <nodeDef id="lifxcolor" nls="lifxc">
-        <editors />
-        <sts>
-            <st id="ST" editor="lifxpower" />
-            <st id="GV1" editor="lifxclr" />
-            <st id="GV2" editor="lifxclr" />
-            <st id="GV3" editor="lifxclr" />
-            <st id="CLITEMP" editor="lifxkelvin" />
-            <st id="RR" editor="lifxduration" />
-            <st id="GV5" editor="lifxpower" />
-            <st id="GV6" editor="lifxuptime" />
-        </sts>
-        <cmds>
-            <sends />
-            <accepts>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-                <cmd id="QUERY" />
-                <cmd id="SET_COLOR">
-                   <p id="" editor="lifxchoice" />
-                </cmd>
-                <cmd id="SETH">
-                    <p id="" editor="lifxclr" init="GV1"/>
-                </cmd>
-                <cmd id="SETS">
-                    <p id="" editor="lifxclr" init="GV2"/>
-                </cmd>
-                <cmd id="SETB">
-                    <p id="" editor="lifxclr" init="GV3"/>
-                </cmd>
-                <cmd id="SETK">
-                    <p id="" editor="lifxkelvin" init="CLITEMP"/>
-                </cmd>
-                <cmd id="SETD">
-                    <p id="" editor="lifxduration" init="RR"/>
-                </cmd>
-                <cmd id="SET_HSBKD">
-                    <p id="H" editor="lifxclr" init="GV1" />
-                    <p id="S" editor="lifxclr" init="GV2" />
-                    <p id="B" editor="lifxclr" init="GV3" />
-                    <p id="K" editor="lifxkelvin" init="CLITEMP" />
-                    <p id="D" editor="lifxduration" init="RR" />
-                </cmd>
-            </accepts>
-        </cmds>
-    </nodeDef>
-    <!-- LIFX White Bulb -->
-    <nodeDef id="lifxwhite" nls="lifxw">
-        <editors />
-        <sts>
-            <st id="ST" editor="lifxpower" />
-            <st id="GV3" editor="lifxclr" />
-            <st id="CLITEMP" editor="lifxkelvin" />
-            <st id="RR" editor="lifxduration" />
-            <st id="GV5" editor="lifxpower" />
-            <st id="GV6" editor="lifxuptime" />
-        </sts>
-        <cmds>
-            <sends />
-            <accepts>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-                <cmd id="QUERY" />
-                <cmd id="SETB">
-                    <p id="" editor="lifxclr" init="GV3"/>
-                </cmd>
-                <cmd id="SETK">
-                    <p id="" editor="lifxkelvin" init="CLITEMP"/>
-                </cmd>
-                <cmd id="SETD">
-                    <p id="" editor="lifxduration" init="RR"/>
-                </cmd>
-                <cmd id="SET_HSBKD">
-                    <p id="B" editor="lifxclr" init="GV3" />
-                    <p id="K" editor="lifxkelvin" init="CLITEMP" />
-                    <p id="D" editor="lifxduration" init="RR" />
-                </cmd>
-            </accepts>
-        </cmds>
-    </nodeDef>
-    <!-- LIFX Group -->
-    <nodeDef id="lifxgroup" nls="lifxg">
-        <editors />
-        <sts>
-			<st id="ST" editor="lifxclr" />
-		</sts>
-        <cmds>
-            <sends />
-            <accepts>
-                <cmd id="DON" />
-				<cmd id="DOF" />
-                <cmd id="SET_COLOR">
-                   <p id="" editor="lifxchoice" />
-                </cmd>
-                <cmd id="SET_HSBKD">
-                    <p id="H" editor="lifxclr" />
-                    <p id="S" editor="lifxclr" />
-                    <p id="B" editor="lifxclr" />
-                    <p id="K" editor="lifxkelvin" />
-                    <p id="D" editor="lifxduration" optional="True" />
-                </cmd>
             </accepts>
         </cmds>
     </nodeDef>
