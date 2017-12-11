@@ -1,19 +1,21 @@
 {
-    "name": "LiFX",
-    "docs": "https://www.lifx.com",
-    "type": "python3",
-    "executable": "lifx-poly.py",
+    "name": "MyNodeServer",
+    "docs": "https://github.com/Einstein42/udi-poly-template-python",
+    "type": "python",
+    "executable": "name-poly.py",
     "install": "install.sh",
-    "description": "Add LIFX control to the ISY994.",
-    "notice": "\"LIFX\" is trademarked., see http://www.lifx.com for more information. This Node Server is neither developed by nor endorsed by LIFX.",
+    "description": "My Node Server",
+    "notice": "Your disclaimer here",
+	"shortPoll": "10",
+	"longPoll": "30",
     "credits": [
         {
-            "title": "polylifx: A Python library for LIFX",
-            "author": "James Milne (Einstein.42)",
-            "version": "0.1.7",
+            "title": "mypoly: a NodeServer for My Integration",
+            "author": "Your Name Here",
+            "version": "1.0.0",
             "date": "November 8, 2017",
-            "source": "https://github.com/Einstein42/lifx-nodeserver",
-            "license": "https://github.com/Einstein42/lifx-nodeserver/blob/master/LICENSE"
+            "source": "https://github.com/Einstein42/udi-poly-template-python",
+            "license": "https://raw.githubusercontent.com/Einstein42/udi-poly-template-python/master/LICENSE"
         }
     ]
 }
