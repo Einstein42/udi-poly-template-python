@@ -5,6 +5,7 @@ by Einstein.42 (James Milne) milne.james@gmail.com
 """
 
 import polyinterface
+import sys
 """
 Import the polyglot interface module. This is in pypy so you can just install it
 normally. Replace pip with pip3 if you are using python3.
@@ -58,7 +59,7 @@ class Controller(polyinterface.Controller):
         Super runs all the parent class necessities. You do NOT have
         to override the __init__ method, but if you do, you MUST call super.
         """
-        super().__init__(polyglot)
+        super(Controller, self).__init__(polyglot)
 
     def start(self):
         """
@@ -70,6 +71,8 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started MyNodeServer')
+        self.setDriver('ST', 1)
+        self.setDriver('GV1', 1)
         self.discover()
 
     def shortPoll(self):
@@ -97,9 +100,10 @@ class Controller(polyinterface.Controller):
         nodes back to ISY. If you override this method you will need to Super or
         issue a reportDrivers() to each node manually.
         """
-        pass
+        for node in self.nodes:
+            self.nodes[node].reportDrivers()
 
-    def discover(self):
+    def discover(self, *args, **kwargs):
         """
         Example
         Do discovery here. Does not have to be called discovery. Called from example
@@ -110,7 +114,7 @@ class Controller(polyinterface.Controller):
     """
     Optional.
     Since the controller is the parent node in ISY, it will actual show up as a node.
-    So it needs to know the drivers/commands and what id it will use. These are
+    So it needs to know the drivers and what id it will use. The drivers are
     the defaults in the parent Class, so you don't need them unless you want to add to
     them. The ST and GV1 variables are for reporting status through Polyglot to ISY,
     DO NOT remove them. UOM 2 is boolean.
@@ -121,7 +125,7 @@ class Controller(polyinterface.Controller):
                 {'driver': 'GV1', 'value': 0, 'uom': 2}]
 
 
-class MyNode(polyglotinterface.Node):
+class MyNode(polyinterface.Node):
     """
     This is the class that all the Nodes will be represented by. You will add this to
     Polyglot/ISY with the controller.addNode method.
@@ -151,7 +155,7 @@ class MyNode(polyglotinterface.Node):
         :param address: This nodes address
         :param name: This nodes name
         """
-        super().__init__(parent, primary, address, name)
+        super(MyNode, self).__init__(parent, primary, address, name)
 
     def start(self):
         """
@@ -159,6 +163,7 @@ class MyNode(polyglotinterface.Node):
         This method is run once the Node is successfully added to the ISY
         and we get a return result from Polyglot.
         """
+        self.setDriver('ST', 1)
         pass
 
     def setOn(self, *args, **kwargs):
@@ -209,7 +214,7 @@ class MyNode(polyglotinterface.Node):
 
 if __name__ == "__main__":
     try:
-        polyglot = polyinterface.Interface()
+        polyglot = polyinterface.Interface('MyNodeServer')
         """
         Instantiates the Interface to Polyglot.
         """
