@@ -71,8 +71,6 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started MyNodeServer')
-        self.setDriver('ST', 1)
-        self.setDriver('GV1', 1)
         self.discover()
 
     def shortPoll(self):
