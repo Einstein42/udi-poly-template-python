@@ -166,7 +166,7 @@ class MyNode(polyinterface.Node):
         self.setDriver('ST', 1)
         pass
 
-    def setOn(self, *args, **kwargs):
+    def setOn(self, command):
         """
         Example command received from ISY.
         Set DON on MyNode.
@@ -174,7 +174,7 @@ class MyNode(polyinterface.Node):
         """
         self.setDriver('ST', 1)
 
-    def setOff(self, *args, **kwargs):
+    def setOff(self, command):
         """
         Example command received from ISY.
         Set DOF on MyNode
@@ -182,7 +182,7 @@ class MyNode(polyinterface.Node):
         """
         self.setDriver('ST', 0)
 
-    def query(self, *args, **kwargs):
+    def query(self, command):
         """
         Called by ISY to report all drivers for this node. This is done in
         the parent class, so you don't need to override this method unless
