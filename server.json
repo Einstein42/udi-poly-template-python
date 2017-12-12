@@ -6,8 +6,8 @@
     "install": "install.sh",
     "description": "My Node Server",
     "notice": "Your disclaimer here",
-    "shortPoll": "10",
-    "longPoll": "30",
+    "shortPoll": "5",
+    "longPoll": "60",
     "credits": [
         {
             "title": "mypoly: a NodeServer for My Integration",

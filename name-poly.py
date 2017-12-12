@@ -45,7 +45,7 @@ class Controller(polyinterface.Controller):
     start(): Once the NodeServer config is received from Polyglot this method is automatically called.
     addNode(polyinterface.Node): Adds Node to self.nodes and polyglot/ISY. This is called for you
                                  on the controller itself.
-    delNode(polyinterface.Node): Deletes a Node from the self.nodes/polyglot and ISY.
+    delNode(address): Deletes a Node from the self.nodes/polyglot and ISY. Address is the Node's Address
     longPoll(): Runs every longPoll seconds (set initially in the server.json or default 10 seconds)
     shortPoll(): Runs every shortPoll seconds (set initially in the server.json or default 30 seconds)
     query(): Queries and reports ALL drivers for ALL nodes to the ISY.
