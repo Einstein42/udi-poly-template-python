@@ -109,6 +109,15 @@ class Controller(polyinterface.Controller):
         """
         self.addNode(MyNode(self, self.address, 'myaddress', 'My Node Name'))
 
+    def delete(self):
+        """
+        Example
+        This is sent by Polyglot upon deletion of the NodeServer. If the process is
+        co-resident and controlled by Polyglot, it will be terminiated within 5 seconds
+        of receiving this message.
+        """
+        LOGGER.info('Oh God I\'m being deleted. Nooooooooooooooooooooooooooooooooooooooooo.')
+
     """
     Optional.
     Since the controller is the parent node in ISY, it will actual show up as a node.
