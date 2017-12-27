@@ -1,5 +1,5 @@
 {
-    "name": "MyNodeServer",
+    "name": "PythonTemplate",
     "docs": "https://github.com/Einstein42/udi-poly-template-python",
     "type": "python",
     "executable": "name-poly.py",
