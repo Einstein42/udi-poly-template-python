@@ -189,7 +189,7 @@ class MyNode(polyinterface.Node):
         """
         self.setDriver('ST', 0)
 
-    def query(self, command):
+    def query(self):
         """
         Called by ISY to report all drivers for this node. This is done in
         the parent class, so you don't need to override this method unless
