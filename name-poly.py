@@ -151,18 +151,18 @@ class MyNode(polyinterface.Node):
     reportDrivers(): Forces a full update of all drivers to Polyglot/ISY.
     query(): Called when ISY sends a query request to Polyglot for this specific node
     """
-    def __init__(self, parent, primary, address, name):
+    def __init__(self, controller, primary, address, name):
         """
         Optional.
         Super runs all the parent class necessities. You do NOT have
         to override the __init__ method, but if you do, you MUST call super.
 
-        :param parent: Reference to the Controller class
+        :param controller: Reference to the Controller class
         :param primary: Controller address
         :param address: This nodes address
         :param name: This nodes name
         """
-        super(MyNode, self).__init__(parent, primary, address, name)
+        super(MyNode, self).__init__(controller, primary, address, name)
 
     def start(self):
         """
