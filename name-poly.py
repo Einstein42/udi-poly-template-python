@@ -38,13 +38,14 @@ class Controller(polyinterface.Controller):
     self.nodes: Dictionary of nodes. Includes the Controller node. Keys are the node addresses
     self.name: String name of the node
     self.address: String Address of Node, must be less than 14 characters (ISY limitation)
-    self.polyConfig: Full JSON config dictionary received from Polyglot.
+    self.polyConfig: Full JSON config dictionary received from Polyglot for the controller Node
     self.added: Boolean Confirmed added to ISY as primary node
 
     Class Methods (not including the Node methods):
     start(): Once the NodeServer config is received from Polyglot this method is automatically called.
-    addNode(polyinterface.Node): Adds Node to self.nodes and polyglot/ISY. This is called for you
-                                 on the controller itself.
+    addNode(polyinterface.Node, update = False): Adds Node to self.nodes and polyglot/ISY. This is called
+        for you on the controller itself. Update = True overwrites the existing Node data.
+    updateNode(polyinterface.Node): Overwrites the existing node data here and on Polyglot.
     delNode(address): Deletes a Node from the self.nodes/polyglot and ISY. Address is the Node's Address
     longPoll(): Runs every longPoll seconds (set initially in the server.json or default 10 seconds)
     shortPoll(): Runs every shortPoll seconds (set initially in the server.json or default 30 seconds)
@@ -168,7 +169,7 @@ class MyNode(polyinterface.Node):
         """
         Optional.
         This method is run once the Node is successfully added to the ISY
-        and we get a return result from Polyglot.
+        and we get a return result from Polyglot. Only happens once.
         """
         self.setDriver('ST', 1)
         pass
