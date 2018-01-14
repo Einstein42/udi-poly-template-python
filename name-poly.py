@@ -132,8 +132,8 @@ class Controller(polyinterface.Controller):
     """
     id = 'controller'
     commands = {'DISCOVER': discover}
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2},
-                {'driver': 'GV1', 'value': 0, 'uom': 2}]
+    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
+
 
 
 class MyNode(polyinterface.Node):
