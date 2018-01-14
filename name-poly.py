@@ -6,6 +6,7 @@ by Einstein.42 (James Milne) milne.james@gmail.com
 
 import polyinterface
 import sys
+import time
 """
 Import the polyglot interface module. This is in pypy so you can just install it
 normally. Replace pip with pip3 if you are using python3.
@@ -40,6 +41,7 @@ class Controller(polyinterface.Controller):
     self.address: String Address of Node, must be less than 14 characters (ISY limitation)
     self.polyConfig: Full JSON config dictionary received from Polyglot for the controller Node
     self.added: Boolean Confirmed added to ISY as primary node
+    self.config: Dictionary, this node's Config
 
     Class Methods (not including the Node methods):
     start(): Once the NodeServer config is received from Polyglot this method is automatically called.
@@ -108,6 +110,7 @@ class Controller(polyinterface.Controller):
         Do discovery here. Does not have to be called discovery. Called from example
         controller start method and from DISCOVER command recieved from ISY as an exmaple.
         """
+        time.sleep(1)
         self.addNode(MyNode(self, self.address, 'myaddress', 'My Node Name'))
 
     def delete(self):
