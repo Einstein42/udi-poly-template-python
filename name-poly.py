@@ -52,6 +52,7 @@ class Controller(polyinterface.Controller):
     longPoll(): Runs every longPoll seconds (set initially in the server.json or default 10 seconds)
     shortPoll(): Runs every shortPoll seconds (set initially in the server.json or default 30 seconds)
     query(): Queries and reports ALL drivers for ALL nodes to the ISY.
+    getDriver('ST'): gets the current value from Polyglot for driver 'ST' returns a STRING, cast as needed
     runForever(): Easy way to run forever without maxing your CPU or doing some silly 'time.sleep' nonsense
                   this joins the underlying queue query thread and just waits for it to terminate
                   which never happens.
