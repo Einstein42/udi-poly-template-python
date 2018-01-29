@@ -3,7 +3,6 @@
 This is a NodeServer template for Polyglot v2 written in Python2/3
 by Einstein.42 (James Milne) milne.james@gmail.com
 """
-
 import polyinterface
 import sys
 import time
@@ -123,6 +122,8 @@ class Controller(polyinterface.Controller):
         """
         LOGGER.info('Oh God I\'m being deleted. Nooooooooooooooooooooooooooooooooooooooooo.')
 
+    def stop(self):
+        LOGGER.debug('NodeServer stopped.')
     """
     Optional.
     Since the controller is the parent node in ISY, it will actual show up as a node.
