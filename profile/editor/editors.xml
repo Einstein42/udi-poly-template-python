@@ -1,6 +1,6 @@
 <editors>
     <!-- Boolean -->
     <editor id="bool">
-        <range uom="2" />
+        <range uom="2" subset="0,1" />
     </editor>
 </editors>
