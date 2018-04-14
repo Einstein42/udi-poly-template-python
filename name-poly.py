@@ -149,7 +149,6 @@ class Controller(polyinterface.Controller):
         if self.user == default_user or self.password == default_password:
             self.addNotice("Please set proper camera user and password in Configuration page, and restart this nodeserver")
 
-
     """
     Optional.
     Since the controller is the parent node in ISY, it will actual show up as a node.

@@ -12,7 +12,11 @@
         {
             "title": "mypoly: a NodeServer for My Integration",
             "author": "James Milne (Einstein.42)",
+<<<<<<< HEAD
             "version": "2.0.3",
+=======
+            "version": "2.0.2",
+>>>>>>> upstream/master
             "date": "November 8, 2017",
             "source": "https://github.com/Einstein42/udi-poly-template-python",
             "license": "https://raw.githubusercontent.com/Einstein42/udi-poly-template-python/master/LICENSE"
