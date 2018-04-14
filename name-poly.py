@@ -152,7 +152,17 @@ class Controller(polyinterface.Controller):
         self.removeNoticesAll()
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
-            self.addNotice("Please set proper user and password in Configuration page, and restart this nodeserver")
+            self.addNotice("Please set proper user and password in configuration page, and restart this nodeserver")
+
+    def remove_notices_all(self,command):
+        LOGGER.info('remove_notices_all:')
+        # Remove all existing notices
+        self.removeNoticesAll()
+
+    def update_profile(self,command):
+        LOGGER.info('update_profile:')
+        st = self.poly.installprofile()
+        return st
 
     """
     Optional.
@@ -163,7 +173,11 @@ class Controller(polyinterface.Controller):
     DO NOT remove them. UOM 2 is boolean.
     """
     id = 'controller'
-    commands = {'DISCOVER': discover}
+    commands = {
+        'DISCOVER': discover,
+        'UPDATE_PROFILE': update_profile,
+        'REMOVE_NOTICES_ALL': remove_notices_all
+    }
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
 
 

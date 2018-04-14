@@ -1,6 +1,8 @@
 # controller
 ND-controller-NAME = My NodeServer Controller
 CMD-ctl-DISCOVER-NAME = Re-Discover
+CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
+CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove Notices
 ST-ctl-ST-NAME = NodeServer Online
 
 # mynodetype
