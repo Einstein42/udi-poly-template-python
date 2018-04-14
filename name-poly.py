@@ -3,7 +3,6 @@
 This is a NodeServer template for Polyglot v2 written in Python2/3
 by Einstein.42 (James Milne) milne.james@gmail.com
 """
-
 import polyinterface
 import sys
 import time
@@ -75,6 +74,7 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started MyNodeServer')
+        self.check_params()
         self.discover()
 
     def shortPoll(self):
@@ -111,7 +111,6 @@ class Controller(polyinterface.Controller):
         Do discovery here. Does not have to be called discovery. Called from example
         controller start method and from DISCOVER command recieved from ISY as an exmaple.
         """
-        time.sleep(1)
         self.addNode(MyNode(self, self.address, 'myaddress', 'My Node Name'))
 
     def delete(self):
@@ -122,6 +121,34 @@ class Controller(polyinterface.Controller):
         of receiving this message.
         """
         LOGGER.info('Oh God I\'m being deleted. Nooooooooooooooooooooooooooooooooooooooooo.')
+
+    def stop(self):
+        LOGGER.debug('NodeServer stopped.')
+
+    def check_params(self):
+        default_user = "YourUserName"
+        default_password = "YourPassword"
+        if 'user' in self.polyConfig['customParams']:
+            self.user = self.polyConfig['customParams']['user']
+        else:
+            self.user = default_user
+            LOGGER.error('check_params: user not defined in customParams, please add it.  Using {}'.format(self.user))
+            st = False
+
+        if 'password' in self.polyConfig['customParams']:
+            self.password = self.polyConfig['customParams']['password']
+        else:
+            self.password = default_password
+            LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(self.password))
+            st = False
+
+        # Make sure they are in the params
+        self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
+
+        self.removeNoticesAll()
+        if self.user == default_user or self.password == default_password:
+            self.addNotice("Please set proper camera user and password in Configuration page, and restart this nodeserver")
+
 
     """
     Optional.
