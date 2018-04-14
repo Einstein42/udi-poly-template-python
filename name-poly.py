@@ -147,7 +147,7 @@ class Controller(polyinterface.Controller):
 
         self.removeNoticesAll()
         if self.user == default_user or self.password == default_password:
-            self.addNotice("Please set proper camera user and password in Configuration page, and restart this nodeserver")
+            self.addNotice("Please set proper user and password in Configuration page, and restart this nodeserver")
 
     """
     Optional.
