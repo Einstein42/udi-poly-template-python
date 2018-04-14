@@ -126,6 +126,9 @@ class Controller(polyinterface.Controller):
         LOGGER.debug('NodeServer stopped.')
 
     def check_params(self):
+        """
+        This is an example if using custom Params for user and password and an example with a Dictionary
+        """
         default_user = "YourUserName"
         default_password = "YourPassword"
         if 'user' in self.polyConfig['customParams']:
@@ -145,7 +148,9 @@ class Controller(polyinterface.Controller):
         # Make sure they are in the params
         self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
+        # Remove all existing notices
         self.removeNoticesAll()
+        # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
             self.addNotice("Please set proper user and password in Configuration page, and restart this nodeserver")
 
