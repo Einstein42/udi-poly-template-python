@@ -74,6 +74,7 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started MyNodeServer')
+        self.check_params()
         self.discover()
 
     def shortPoll(self):
@@ -110,7 +111,6 @@ class Controller(polyinterface.Controller):
         Do discovery here. Does not have to be called discovery. Called from example
         controller start method and from DISCOVER command recieved from ISY as an exmaple.
         """
-        time.sleep(1)
         self.addNode(MyNode(self, self.address, 'myaddress', 'My Node Name'))
 
     def delete(self):
@@ -124,6 +124,46 @@ class Controller(polyinterface.Controller):
 
     def stop(self):
         LOGGER.debug('NodeServer stopped.')
+
+    def check_params(self):
+        """
+        This is an example if using custom Params for user and password and an example with a Dictionary
+        """
+        default_user = "YourUserName"
+        default_password = "YourPassword"
+        if 'user' in self.polyConfig['customParams']:
+            self.user = self.polyConfig['customParams']['user']
+        else:
+            self.user = default_user
+            LOGGER.error('check_params: user not defined in customParams, please add it.  Using {}'.format(self.user))
+            st = False
+
+        if 'password' in self.polyConfig['customParams']:
+            self.password = self.polyConfig['customParams']['password']
+        else:
+            self.password = default_password
+            LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(self.password))
+            st = False
+
+        # Make sure they are in the params
+        self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
+
+        # Remove all existing notices
+        self.removeNoticesAll()
+        # Add a notice if they need to change the user/password from the default.
+        if self.user == default_user or self.password == default_password:
+            self.addNotice("Please set proper user and password in configuration page, and restart this nodeserver")
+
+    def remove_notices_all(self,command):
+        LOGGER.info('remove_notices_all:')
+        # Remove all existing notices
+        self.removeNoticesAll()
+
+    def update_profile(self,command):
+        LOGGER.info('update_profile:')
+        st = self.poly.installprofile()
+        return st
+
     """
     Optional.
     Since the controller is the parent node in ISY, it will actual show up as a node.
@@ -133,7 +173,11 @@ class Controller(polyinterface.Controller):
     DO NOT remove them. UOM 2 is boolean.
     """
     id = 'controller'
-    commands = {'DISCOVER': discover}
+    commands = {
+        'DISCOVER': discover,
+        'UPDATE_PROFILE': update_profile,
+        'REMOVE_NOTICES_ALL': remove_notices_all
+    }
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
 
 
