@@ -77,7 +77,7 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Started Template NodeServer')
         self.check_params()
         self.discover()
-        self.add_custom_config_docs("# And this is some custom config data")
+        self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
 
     def shortPoll(self):
         """
