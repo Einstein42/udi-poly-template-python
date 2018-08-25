@@ -1,5 +1,6 @@
 # controller
 ND-controller-NAME = Template NodeServer Controller
+CMD-ctl-QUERY"-NAME = Query
 CMD-ctl-DISCOVER-NAME = Re-Discover
 CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove All Notices

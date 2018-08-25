@@ -77,6 +77,7 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Started Template NodeServer')
         self.check_params()
         self.discover()
+        self.add_custom_config_docs("# And this is some custom config data")
 
     def shortPoll(self):
         """
@@ -103,6 +104,7 @@ class Controller(polyinterface.Controller):
         nodes back to ISY. If you override this method you will need to Super or
         issue a reportDrivers() to each node manually.
         """
+        self.check_params()
         for node in self.nodes:
             self.nodes[node].reportDrivers()
 
@@ -185,6 +187,7 @@ class Controller(polyinterface.Controller):
     """
     id = 'controller'
     commands = {
+        'QUERY': query,
         'DISCOVER': discover,
         'UPDATE_PROFILE': update_profile,
         'REMOVE_NOTICES_ALL': remove_notices_all,
