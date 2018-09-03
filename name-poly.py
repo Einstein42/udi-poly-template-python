@@ -155,7 +155,7 @@ class Controller(polyinterface.Controller):
         self.removeNoticesAll()
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
-            self.addNotice("Please set proper user and password in configuration page, and restart this nodeserver")
+            self.addNotice({'mynotice': 'Please set proper user and password in configuration page, and restart this nodeserver')
 
     def remove_notices_all(self,command):
         LOGGER.info('remove_notices_all:')
