@@ -77,8 +77,8 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started MyNodeServer')
-        self.addNotice({'mynotice': 'Hello Friends!'})
-        # self.check_params()
+        self.addNotice({'hello': 'Hello Friends!'})
+        self.check_params()
         self.discover()
 
     def shortPoll(self):
