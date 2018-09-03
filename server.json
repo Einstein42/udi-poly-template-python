@@ -4,10 +4,11 @@
     "type": "python",
     "executable": "name-poly.py",
     "install": "install.sh",
+    "install_cloud": "install_cloud.sh",
     "description": "My Node Server",
     "notice": "Your disclaimer here",
-    "shortPoll": "5",
-    "longPoll": "60",
+    "shortPoll": "120",
+    "longPoll": "240",
     "credits": [
         {
             "title": "mypoly: a NodeServer for My Integration",
