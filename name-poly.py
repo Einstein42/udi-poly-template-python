@@ -78,7 +78,7 @@ class Controller(polyinterface.Controller):
         """
         LOGGER.info('Started MyNodeServer')
         self.addNotice({'mynotice': 'Hello Friends!'})
-        self.check_params()
+        # self.check_params()
         self.discover()
 
     def shortPoll(self):
