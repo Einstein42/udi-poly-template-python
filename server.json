@@ -1,7 +1,7 @@
 {
     "name": "PythonTemplate",
     "docs": "https://github.com/Einstein42/udi-poly-template-python",
-    "type": "python",
+    "type": "python3",
     "executable": "name-poly.py",
     "install": "install.sh",
     "install_cloud": "install_cloud.sh",
