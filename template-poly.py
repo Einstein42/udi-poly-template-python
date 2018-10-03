@@ -64,6 +64,7 @@ class Controller(polyinterface.Controller):
         """
         super(Controller, self).__init__(polyglot)
         self.name = 'Template Controller'
+        self.poly.onConfig(self.process_config)
 
     def start(self):
         """
@@ -127,6 +128,12 @@ class Controller(polyinterface.Controller):
 
     def stop(self):
         LOGGER.debug('NodeServer stopped.')
+
+    def process_config(self, config):
+        # this seems to get called twice for every change, why?
+        # What does config represent?
+        LOGGER.info("process_config: Enter config={}".format(config));
+        LOGGER.info("process_config: Exit");
 
     def check_params(self):
         """
