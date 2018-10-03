@@ -3,7 +3,10 @@
 This is a NodeServer template for Polyglot v2 written in Python2/3
 by Einstein.42 (James Milne) milne.james@gmail.com
 """
-import polyinterface
+try:
+    import polyinterface
+except ImportError:
+    import pgc_interface as polyinterface
 import sys
 import time
 """
@@ -76,6 +79,7 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started Template NodeServer')
+        self.addNotice({'hello': 'Hello Friends!'})
         self.check_params()
         self.discover()
         self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
