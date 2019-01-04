@@ -273,7 +273,8 @@ class TemplateNode(polyinterface.Node):
         """
         self.reportDrivers()
 
-
+    "Hints See: https://github.com/UniversalDevicesInc/hints"
+    hint = [1,2,3,4]
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     """
     Optional.
