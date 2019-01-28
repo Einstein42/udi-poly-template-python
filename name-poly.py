@@ -153,7 +153,7 @@ class Controller(polyinterface.Controller):
         self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
         # Remove all existing notices
-        self.removeNoticesAll()
+        # self.removeNoticesAll()
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
             self.addNotice({'mynotice': 'Please set proper user and password in configuration page, and restart this nodeserver'})
@@ -182,7 +182,7 @@ class Controller(polyinterface.Controller):
         'UPDATE_PROFILE': update_profile,
         'REMOVE_NOTICES_ALL': remove_notices_all
     }
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
+    drivers = [{'driver': 'ST', 'value': 1, 'uom': 2}]
 
 
 
@@ -292,6 +292,7 @@ if __name__ == "__main__":
         Sits around and does nothing forever, keeping your program running.
         """
     except (KeyboardInterrupt, SystemExit):
+        polyglot.stop()
         sys.exit(0)
         """
         Catch SIGTERM or Control-C and exit cleanly.
