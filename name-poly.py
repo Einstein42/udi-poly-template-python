@@ -153,7 +153,7 @@ class Controller(polyinterface.Controller):
         self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
         # Remove all existing notices
-        # self.removeNoticesAll()
+        self.removeNoticesAll()
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
             self.addNotice({'mynotice': 'Please set proper user and password in configuration page, and restart this nodeserver'})
