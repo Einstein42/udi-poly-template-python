@@ -77,7 +77,10 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started MyNodeServer')
-        self.addNotice({'hello': 'Hello Friends!'})
+        # Remove all existing notices
+        self.removeNoticesAll()
+        self.addNotice('Hello Friends! (with key)','hello')
+        self.addNotice('Hello Friends! (without key)')
         self.check_params()
         self.discover()
 
@@ -152,11 +155,9 @@ class Controller(polyinterface.Controller):
         # Make sure they are in the params
         self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
-        # Remove all existing notices
-        self.removeNoticesAll()
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
-            self.addNotice({'mynotice': 'Please set proper user and password in configuration page, and restart this nodeserver'})
+            self.addNotice('Please set proper user and password in configuration page, and restart this nodeserver','mynotice')
 
     def remove_notices_all(self,command):
         LOGGER.info('remove_notices_all:')
