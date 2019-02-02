@@ -79,8 +79,6 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Started MyNodeServer')
         # Remove all existing notices
         self.removeNoticesAll()
-        self.addNotice('Hello Friends! (with key)','hello')
-        self.addNotice('Hello Friends! (without key)')
         self.check_params()
         self.discover()
 
@@ -136,6 +134,8 @@ class Controller(polyinterface.Controller):
         """
         This is an example if using custom Params for user and password and an example with a Dictionary
         """
+        self.addNotice('Hello Friends! (with key)','hello')
+        self.addNotice('Hello Friends! (without key)')
         default_user = "YourUserName"
         default_password = "YourPassword"
         if 'user' in self.polyConfig['customParams']:
