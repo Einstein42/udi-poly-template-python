@@ -143,6 +143,8 @@ class Controller(polyinterface.Controller):
         """
         This is an example if using custom Params for user and password and an example with a Dictionary
         """
+        self.addNotice('Hello Friends! (with key)','hello')
+        self.addNotice('Hello Friends! (without key)')
         default_user = "YourUserName"
         default_password = "YourPassword"
         if 'user' in self.polyConfig['customParams']:
@@ -162,8 +164,6 @@ class Controller(polyinterface.Controller):
         # Make sure they are in the params
         self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
-        # Remove all existing notices
-        self.removeNoticesAll()
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
             # This doesn't pass a key to test the old way.
@@ -204,7 +204,7 @@ class Controller(polyinterface.Controller):
         'REMOVE_NOTICES_ALL': remove_notices_all,
         'REMOVE_NOTICE_TEST': remove_notice_test
     }
-    drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
+    drivers = [{'driver': 'ST', 'value': 1, 'uom': 2}]
 
 
 
@@ -317,6 +317,7 @@ if __name__ == "__main__":
         Sits around and does nothing forever, keeping your program running.
         """
     except (KeyboardInterrupt, SystemExit):
+        polyglot.stop()
         sys.exit(0)
         """
         Catch SIGTERM or Control-C and exit cleanly.
