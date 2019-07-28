@@ -69,5 +69,8 @@ target/
 .ipynb_checkpoints
 .idea/
 
+# Crapple
+.AppleDouble
+
 #Project specific
 polyinterface

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 This is a NodeServer template for Polyglot v2 written in Python2/3
 by Einstein.42 (James Milne) milne.james@gmail.com
@@ -66,6 +66,8 @@ class Controller(polyinterface.Controller):
         to override the __init__ method, but if you do, you MUST call super.
         """
         super(Controller, self).__init__(polyglot)
+        self.name = 'Template Controller'
+        self.poly.onConfig(self.process_config)
 
     def start(self):
         """
@@ -76,11 +78,11 @@ class Controller(polyinterface.Controller):
         this is where you should start. No need to Super this method, the parent
         version does nothing.
         """
-        LOGGER.info('Started MyNodeServer')
-        # Remove all existing notices
-        self.removeNoticesAll()
+        LOGGER.info('Started Template NodeServer')
+        self.addNotice({'hello': 'Hello Friends!'})
         self.check_params()
         self.discover()
+        self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
 
     def shortPoll(self):
         """
@@ -107,6 +109,7 @@ class Controller(polyinterface.Controller):
         nodes back to ISY. If you override this method you will need to Super or
         issue a reportDrivers() to each node manually.
         """
+        self.check_params()
         for node in self.nodes:
             self.nodes[node].reportDrivers()
 
@@ -116,7 +119,7 @@ class Controller(polyinterface.Controller):
         Do discovery here. Does not have to be called discovery. Called from example
         controller start method and from DISCOVER command recieved from ISY as an exmaple.
         """
-        self.addNode(MyNode(self, self.address, 'myaddress', 'My Node Name'))
+        self.addNode(TemplateNode(self, self.address, 'templateaddr', 'Template Node Name'))
 
     def delete(self):
         """
@@ -129,6 +132,12 @@ class Controller(polyinterface.Controller):
 
     def stop(self):
         LOGGER.debug('NodeServer stopped.')
+
+    def process_config(self, config):
+        # this seems to get called twice for every change, why?
+        # What does config represent?
+        LOGGER.info("process_config: Enter config={}".format(config));
+        LOGGER.info("process_config: Exit");
 
     def check_params(self):
         """
@@ -157,10 +166,18 @@ class Controller(polyinterface.Controller):
 
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
-            self.addNotice('Please set proper user and password in configuration page, and restart this nodeserver','mynotice')
+            # This doesn't pass a key to test the old way.
+            self.addNotice('Please set proper user and password in configuration page, and restart this nodeserver')
+        # This one passes a key to test the new way.
+        self.addNotice('This is a test','test')
+
+    def remove_notice_test(self,command):
+        LOGGER.info('remove_notice_test: notices={}'.format(self.poly.config['notices']))
+        # Remove all existing notices
+        self.removeNotice('test')
 
     def remove_notices_all(self,command):
-        LOGGER.info('remove_notices_all:')
+        LOGGER.info('remove_notices_all: notices={}'.format(self.poly.config['notices']))
         # Remove all existing notices
         self.removeNoticesAll()
 
@@ -176,18 +193,22 @@ class Controller(polyinterface.Controller):
     the defaults in the parent Class, so you don't need them unless you want to add to
     them. The ST and GV1 variables are for reporting status through Polyglot to ISY,
     DO NOT remove them. UOM 2 is boolean.
+    The id must match the nodeDef id="controller"
+    In the nodedefs.xml
     """
     id = 'controller'
     commands = {
+        'QUERY': query,
         'DISCOVER': discover,
         'UPDATE_PROFILE': update_profile,
-        'REMOVE_NOTICES_ALL': remove_notices_all
+        'REMOVE_NOTICES_ALL': remove_notices_all,
+        'REMOVE_NOTICE_TEST': remove_notice_test
     }
     drivers = [{'driver': 'ST', 'value': 1, 'uom': 2}]
 
 
 
-class MyNode(polyinterface.Node):
+class TemplateNode(polyinterface.Node):
     """
     This is the class that all the Nodes will be represented by. You will add this to
     Polyglot/ISY with the controller.addNode method.
@@ -217,7 +238,7 @@ class MyNode(polyinterface.Node):
         :param address: This nodes address
         :param name: This nodes name
         """
-        super(MyNode, self).__init__(controller, primary, address, name)
+        super(TemplateNode, self).__init__(controller, primary, address, name)
 
     def start(self):
         """
@@ -231,7 +252,7 @@ class MyNode(polyinterface.Node):
     def setOn(self, command):
         """
         Example command received from ISY.
-        Set DON on MyNode.
+        Set DON on TemplateNode.
         Sets the ST (status) driver to 1 or 'True'
         """
         self.setDriver('ST', 1)
@@ -239,7 +260,7 @@ class MyNode(polyinterface.Node):
     def setOff(self, command):
         """
         Example command received from ISY.
-        Set DOF on MyNode
+        Set DOF on TemplateNode
         Sets the ST (status) driver to 0 or 'False'
         """
         self.setDriver('ST', 0)
@@ -252,7 +273,8 @@ class MyNode(polyinterface.Node):
         """
         self.reportDrivers()
 
-
+    "Hints See: https://github.com/UniversalDevicesInc/hints"
+    hint = [1,2,3,4]
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     """
     Optional.
@@ -261,7 +283,7 @@ class MyNode(polyinterface.Node):
     of variable to display. Check the UOM's in the WSDK for a complete list.
     UOM 2 is boolean so the ISY will display 'True/False'
     """
-    id = 'mynodetype'
+    id = 'templatenodeid'
     """
     id of the node from the nodedefs.xml that is in the profile.zip. This tells
     the ISY what fields and commands this node has.
@@ -276,9 +298,12 @@ class MyNode(polyinterface.Node):
 
 if __name__ == "__main__":
     try:
-        polyglot = polyinterface.Interface('MyNodeServer')
+        polyglot = polyinterface.Interface('Template')
         """
         Instantiates the Interface to Polyglot.
+        The name doesn't really matter unless you are starting it from the
+        command line then you need a line Template=N
+        where N is the slot number.
         """
         polyglot.start()
         """
