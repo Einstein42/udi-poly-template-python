@@ -9,7 +9,7 @@
     "notice": "Your disclaimer here",
     "shortPoll": "120",
     "longPoll": "240",
-    "testMode": false,
+    "testMode": true,
     "credits": [
         {
             "title": "mypoly: a NodeServer for Template Integration",
