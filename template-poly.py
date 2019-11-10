@@ -79,7 +79,6 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         LOGGER.info('Started Template NodeServer')
-        self.addNotice({'hello': 'Hello Friends!'})
         self.check_params()
         self.discover()
         self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
@@ -102,7 +101,7 @@ class Controller(polyinterface.Controller):
         """
         pass
 
-    def query(self):
+    def query(self,command=None):
         """
         Optional.
         By default a query to the control node reports the FULL driver set for ALL
@@ -143,7 +142,8 @@ class Controller(polyinterface.Controller):
         """
         This is an example if using custom Params for user and password and an example with a Dictionary
         """
-        self.addNotice('Hello Friends! (with key)','hello')
+        self.removeNoticesAll()
+        self.addNotice('Hey there, my IP is {}'.format(self.poly.network_interface['addr']),'hello')
         self.addNotice('Hello Friends! (without key)')
         default_user = "YourUserName"
         default_password = "YourPassword"
@@ -160,7 +160,6 @@ class Controller(polyinterface.Controller):
             self.password = default_password
             LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(self.password))
             st = False
-
         # Make sure they are in the params
         self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
@@ -265,7 +264,7 @@ class TemplateNode(polyinterface.Node):
         """
         self.setDriver('ST', 0)
 
-    def query(self):
+    def query(self,command=None):
         """
         Called by ISY to report all drivers for this node. This is done in
         the parent class, so you don't need to override this method unless
