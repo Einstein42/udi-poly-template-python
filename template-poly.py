@@ -78,7 +78,9 @@ class Controller(polyinterface.Controller):
         this is where you should start. No need to Super this method, the parent
         version does nothing.
         """
-        LOGGER.info('Started Template NodeServer')
+        # This grabs the server.json data and checks profile_version is up to date
+        serverdata = self.poly.get_server_data()
+        LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
         self.check_params()
         self.discover()
         self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
