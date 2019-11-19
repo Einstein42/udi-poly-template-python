@@ -92,7 +92,7 @@ class Controller(polyinterface.Controller):
         or longPoll. No need to Super this method the parent version does nothing.
         The timer can be overriden in the server.json.
         """
-        pass
+        LOGGER.debug('shortPoll')
 
     def longPoll(self):
         """
@@ -101,7 +101,7 @@ class Controller(polyinterface.Controller):
         or shortPoll. No need to Super this method the parent version does nothing.
         The timer can be overriden in the server.json.
         """
-        pass
+        LOGGER.debug('longPoll')
 
     def query(self,command=None):
         """
