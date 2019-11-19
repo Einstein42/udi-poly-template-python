@@ -250,6 +250,12 @@ class TemplateNode(polyinterface.Node):
         self.setDriver('ST', 1)
         pass
 
+    def shortPoll(self):
+        LOGGER.debug('shortPoll')
+
+    def longPoll(self):
+        LOGGER.debug('longPoll')
+
     def setOn(self, command):
         """
         Example command received from ISY.
@@ -319,8 +325,11 @@ if __name__ == "__main__":
         Sits around and does nothing forever, keeping your program running.
         """
     except (KeyboardInterrupt, SystemExit):
-        polyglot.stop()
-        sys.exit(0)
+        LOGGER.warning("Received interrupt or exit...")
         """
         Catch SIGTERM or Control-C and exit cleanly.
         """
+    except Exception as err:
+        LOGGER.error('Excption: {0}'.format(err), exc_info=True)
+    polyglot.stop()
+    sys.exit(0)
