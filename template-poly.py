@@ -9,6 +9,7 @@ except ImportError:
     import pgc_interface as polyinterface
 import sys
 import time
+
 """
 Import the polyglot interface module. This is in pypy so you can just install it
 normally. Replace pip with pip3 if you are using python3.
@@ -30,6 +31,7 @@ polyinterface has a LOGGER that is created by default and logs to:
 logs/debug.log
 You can use LOGGER.info, LOGGER.warning, LOGGER.debug, LOGGER.error levels as needed.
 """
+
 
 class Controller(polyinterface.Controller):
     """
@@ -59,6 +61,7 @@ class Controller(polyinterface.Controller):
                   this joins the underlying queue query thread and just waits for it to terminate
                   which never happens.
     """
+
     def __init__(self, polyglot):
         """
         Optional.
@@ -103,7 +106,7 @@ class Controller(polyinterface.Controller):
         """
         pass
 
-    def query(self,command=None):
+    def query(self, command=None):
         """
         Optional.
         By default a query to the control node reports the FULL driver set for ALL
@@ -145,7 +148,7 @@ class Controller(polyinterface.Controller):
         This is an example if using custom Params for user and password and an example with a Dictionary
         """
         self.removeNoticesAll()
-        self.addNotice('Hey there, my IP is {}'.format(self.poly.network_interface['addr']),'hello')
+        self.addNotice('Hey there, my IP is {}'.format(self.poly.network_interface['addr']), 'hello')
         self.addNotice('Hello Friends! (without key)')
         default_user = "YourUserName"
         default_password = "YourPassword"
@@ -160,19 +163,21 @@ class Controller(polyinterface.Controller):
             self.password = self.polyConfig['customParams']['password']
         else:
             self.password = default_password
-            LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(self.password))
+            LOGGER.error(
+                'check_params: password not defined in customParams, please add it.  Using {}'.format(self.password))
             st = False
         # Make sure they are in the params
-        self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
+        self.addCustomParam({'password': self.password, 'user': self.user,
+                             'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
             # This doesn't pass a key to test the old way.
             self.addNotice('Please set proper user and password in configuration page, and restart this nodeserver')
         # This one passes a key to test the new way.
-        self.addNotice('This is a test','test')
+        self.addNotice('This is a test', 'test')
 
-    def remove_notice_test(self,command):
+    def remove_notice_test(self, command):
         LOGGER.info('remove_notice_test: notices={}'.format(self.poly.config['notices']))
         # Remove all existing notices
         self.removeNotice('test')
@@ -182,7 +187,7 @@ class Controller(polyinterface.Controller):
         # Remove all existing notices
         self.removeNoticesAll()
 
-    def update_profile(self,command):
+    def update_profile(self, command):
         LOGGER.info('update_profile:')
         st = self.poly.installprofile()
         return st
@@ -208,7 +213,6 @@ class Controller(polyinterface.Controller):
     drivers = [{'driver': 'ST', 'value': 1, 'uom': 2}]
 
 
-
 class TemplateNode(polyinterface.Node):
     """
     This is the class that all the Nodes will be represented by. You will add this to
@@ -228,6 +232,7 @@ class TemplateNode(polyinterface.Node):
     reportDrivers(): Forces a full update of all drivers to Polyglot/ISY.
     query(): Called when ISY sends a query request to Polyglot for this specific node
     """
+
     def __init__(self, controller, primary, address, name):
         """
         Optional.
@@ -266,7 +271,7 @@ class TemplateNode(polyinterface.Node):
         """
         self.setDriver('ST', 0)
 
-    def query(self,command=None):
+    def query(self, command=None):
         """
         Called by ISY to report all drivers for this node. This is done in
         the parent class, so you don't need to override this method unless
@@ -275,7 +280,7 @@ class TemplateNode(polyinterface.Node):
         self.reportDrivers()
 
     "Hints See: https://github.com/UniversalDevicesInc/hints"
-    hint = [1,2,3,4]
+    hint = [1, 2, 3, 4]
     drivers = [{'driver': 'ST', 'value': 0, 'uom': 2}]
     """
     Optional.
@@ -290,12 +295,13 @@ class TemplateNode(polyinterface.Node):
     the ISY what fields and commands this node has.
     """
     commands = {
-                    'DON': setOn, 'DOF': setOff
-                }
+        'DON': setOn, 'DOF': setOff
+    }
     """
     This is a dictionary of commands. If ISY sends a command to the NodeServer,
     this tells it which method to call. DON calls setOn, etc.
     """
+
 
 if __name__ == "__main__":
     try:
