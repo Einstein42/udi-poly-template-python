@@ -177,7 +177,7 @@ class Controller(polyinterface.Controller):
         # Remove all existing notices
         self.removeNotice('test')
 
-    def remove_notices_all(self,command):
+    def remove_notices_all(self):
         LOGGER.info('remove_notices_all: notices={}'.format(self.poly.config['notices']))
         # Remove all existing notices
         self.removeNoticesAll()
