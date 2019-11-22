@@ -130,7 +130,7 @@ class Controller(polyinterface.Controller):
         or longPoll. No need to Super this method the parent version does nothing.
         The timer can be overriden in the server.json.
         """
-        pass
+        LOGGER.debug('shortPoll')
 
     def longPoll(self):
         """
@@ -139,7 +139,7 @@ class Controller(polyinterface.Controller):
         or shortPoll. No need to Super this method the parent version does nothing.
         The timer can be overriden in the server.json.
         """
-        pass
+        LOGGER.debug('longPoll')
 
     def query(self, command=None):
         """
@@ -290,6 +290,12 @@ class TemplateNode(polyinterface.Node):
         self.setDriver('ST', 1)
         pass
 
+    def shortPoll(self):
+        LOGGER.debug('shortPoll')
+
+    def longPoll(self):
+        LOGGER.debug('longPoll')
+
     def setOn(self, command):
         """
         Example command received from ISY.
@@ -360,8 +366,11 @@ if __name__ == "__main__":
         Sits around and does nothing forever, keeping your program running.
         """
     except (KeyboardInterrupt, SystemExit):
-        polyglot.stop()
-        sys.exit(0)
+        LOGGER.warning("Received interrupt or exit...")
         """
         Catch SIGTERM or Control-C and exit cleanly.
         """
+    except Exception as err:
+        LOGGER.error('Excption: {0}'.format(err), exc_info=True)
+    polyglot.stop()
+    sys.exit(0)
