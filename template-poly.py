@@ -88,6 +88,41 @@ class Controller(polyinterface.Controller):
         self.discover()
         self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
 
+    def oauth(self, oauth):
+        """
+        Optional.
+        Process an OAuth Workflow
+        :param oauth:
+        :return:
+        """
+        LOGGER.info('OAUTH Received: {}'.format(oauth))
+        if 'code' in oauth:
+            """
+            Call your function to process the OAuth code and get a token
+            
+            Example:
+            self.get_token(oauth['code'])
+            """
+            self.get_token(oauth['code'])
+        else:
+            return False
+
+    def get_token(self, code):
+        """
+        Optional.
+        Process the code provided from the OAuth workflow
+        :param code:
+        """
+        pass
+
+    def refresh_token(self):
+        """
+        Optional.
+        Code for processing any token refresh from an OAuth workflow
+        :return:
+        """
+        pass
+
     def shortPoll(self):
         """
         Optional.
