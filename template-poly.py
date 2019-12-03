@@ -103,6 +103,7 @@ class Controller(polyinterface.Controller):
         The timer can be overriden in the server.json.
         """
         LOGGER.debug('longPoll')
+        self.heartbeat()
 
     def query(self,command=None):
         """
