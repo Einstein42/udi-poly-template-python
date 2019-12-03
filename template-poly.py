@@ -81,6 +81,7 @@ class Controller(polyinterface.Controller):
         # This grabs the server.json data and checks profile_version is up to date
         serverdata = self.poly.get_server_data()
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
+        self.heartbeat(0)
         self.check_params()
         self.discover()
         self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
@@ -139,6 +140,18 @@ class Controller(polyinterface.Controller):
         # What does config represent?
         LOGGER.info("process_config: Enter config={}".format(config));
         LOGGER.info("process_config: Exit");
+
+    def heartbeat(self,init=False):
+        LOGGER.debug('heartbeat: init={}'.format(init))
+        if init is not False:
+            self.hb = init
+        LOGGER.debug('heartbeat: hb={}'.format(self.hb))
+        if self.hb == 0:
+            self.reportCmd("DON",2)
+            self.hb = 1
+        else:
+            self.reportCmd("DOF",2)
+            self.hb = 0
 
     def check_params(self):
         """

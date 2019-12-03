@@ -7,7 +7,10 @@
 			<st id="ST" editor="bool" />
 		</sts>
         <cmds>
-            <sends />
+            <sends>
+              <cmd id="DON" />
+              <cmd id="DOF" />
+            </sends>
             <accepts>
               <cmd id="QUERY" />
               <cmd id="DISCOVER" />
