@@ -9,7 +9,7 @@
     "notice": "Your disclaimer here",
     "shortPoll": "120",
     "longPoll": "240",
-    "testMode": true,
+    "testMode": false,
     "profile_version": "2.0.5",
     "credits": [
         {
