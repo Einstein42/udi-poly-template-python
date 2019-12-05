@@ -372,5 +372,5 @@ if __name__ == "__main__":
         """
     except Exception as err:
         LOGGER.error('Excption: {0}'.format(err), exc_info=True)
-    polyglot.stop()
-    sys.exit(0)
+        polyglot.stop()
+        sys.exit(0)
