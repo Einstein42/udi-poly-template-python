@@ -79,8 +79,9 @@ class Controller(polyinterface.Controller):
         version does nothing.
         """
         # This grabs the server.json data and checks profile_version is up to date
-        serverdata = self.poly.get_server_data()
-        LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
+        #serverdata = self.poly.get_server_data()
+        #LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
+        LOGGER.info('Started Template NodeServer')
         self.check_params()
         self.discover()
         self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
@@ -305,7 +306,7 @@ class TemplateNode(polyinterface.Node):
 
 if __name__ == "__main__":
     try:
-        polyglot = polyinterface.Interface('Template')
+        polyglot = polyinterface.Interface('PythonTemplate')
         """
         Instantiates the Interface to Polyglot.
         The name doesn't really matter unless you are starting it from the
@@ -329,7 +330,7 @@ if __name__ == "__main__":
         """
         Catch SIGTERM or Control-C and exit cleanly.
         """
+        polyglot.stop()
     except Exception as err:
         LOGGER.error('Excption: {0}'.format(err), exc_info=True)
-    polyglot.stop()
     sys.exit(0)
