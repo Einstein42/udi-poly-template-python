@@ -5,13 +5,18 @@
         <editors />
         <sts>
 			<st id="ST" editor="bool" />
+      <st id="GV1" editor="I_DEBUG" />
 		</sts>
         <cmds>
             <sends>
+              <!-- These are for our heartbeat -->
               <cmd id="DON" />
               <cmd id="DOF" />
             </sends>
             <accepts>
+              <cmd id="SET_DM">
+                <p id="" editor="I_DEBUG" init="GV1" />
+              </cmd>
               <cmd id="QUERY" />
               <cmd id="DISCOVER" />
               <cmd id="REMOVE_NOTICES_ALL" />
@@ -31,6 +36,7 @@
             <accepts>
                 <cmd id="DON" />
                 <cmd id="DOF" />
+                <cmd id="PING" />
             </accepts>
         </cmds>
     </nodeDef>
