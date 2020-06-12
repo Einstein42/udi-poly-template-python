@@ -71,7 +71,7 @@ class TemplateController(Controller):
         # last time run which is stored in the DB.  When testing just keep
         # changing the profile_version to some fake string to reload on restart
         # Only works on local currently..
-        serverdata = self.poly.get_server_data(check_profile=None)
+        serverdata = self.poly.get_server_data(check_profile=True)
         #serverdata['version'] = "testing"
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
         # Show values on startup if desired.
