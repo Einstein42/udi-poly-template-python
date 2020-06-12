@@ -1,2 +1,2 @@
-polyinterface >= 2.0.34
+polyinterface >= 2.1.0
 urllib3
