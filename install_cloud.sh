@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-#pip install -r requirements_cloud.txt
+pip3 install -r requirements_cloud.txt
+

@@ -237,6 +237,66 @@ class TemplateController(Controller):
             self.addNotice('Please set proper user and password in configuration page, and restart this nodeserver')
         # This one passes a key to test the new way.
         self.addNotice('This is a test','test')
+        self.poly.save_typed_params(
+            [
+                {
+                    'name': 'item',
+                    'title': 'Item',
+                    'desc': 'Description of Item',
+                    'isList': False,
+                    'params': [
+                        {
+                            'name': 'id',
+                            'title': 'The Item ID',
+                            'isRequired': True,
+                        },
+                        {
+                            'name': 'title',
+                            'title': 'The Item Title',
+                            'defaultValue': 'The Default Title',
+                            'isRequired': True,
+                        },
+                        {
+                            'name': 'extra',
+                            'title': 'The Item Extra Info',
+                            'isRequired': False,
+                        }
+                    ]
+                },
+                {
+                    'name': 'itemlist',
+                    'title': 'Item List',
+                    'desc': 'Description of Item List',
+                    'isList': True,
+                    'params': [
+                        {
+                            'name': 'id',
+                            'title': 'The Item ID',
+                            'isRequired': True,
+                        },
+                        {
+                            'name': 'title',
+                            'title': 'The Item Title',
+                            'defaultValue': 'The Default Title',
+                            'isRequired': True,
+                        },
+                        {
+                            'name': 'names',
+                            'title': 'The Item Names',
+                            'isRequired': False,
+                            'isList': True,
+                            'defaultValue': ['somename']
+                        },
+                        {
+                            'name': 'extra',
+                            'title': 'The Item Extra Info',
+                            'isRequired': False,
+                            'isList': True,
+                        }
+                    ]
+                },
+            ]
+        );
 
     def remove_notice_test(self,command):
         LOGGER.info('remove_notice_test: notices={}'.format(self.poly.config['notices']))
