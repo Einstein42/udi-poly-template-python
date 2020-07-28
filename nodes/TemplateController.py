@@ -215,21 +215,21 @@ class TemplateController(Controller):
         self.addNotice('Hello Friends! (without key)')
         default_user = "YourUserName"
         default_password = "YourPassword"
-        if 'user' in self.polyConfig['customParams']:
-            self.user = self.polyConfig['customParams']['user']
-        else:
+
+        self.user = self.getCustomParam('user')
+        if self.user is None:
             self.user = default_user
             LOGGER.error('check_params: user not defined in customParams, please add it.  Using {}'.format(self.user))
-            st = False
+            self.addCustomParam({'user': self.user})
 
-        if 'password' in self.polyConfig['customParams']:
-            self.password = self.polyConfig['customParams']['password']
-        else:
+        self.password = self.getCustomParam('password')
+        if self.password is None:
             self.password = default_password
             LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(self.password))
-            st = False
-        # Make sure they are in the params
-        self.addCustomParam({'password': self.password, 'user': self.user, 'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
+            self.addCustomParam({'password': self.password})
+
+        # Always overwrite this, it's just an example...
+        self.addCustomParam({'some_example': '{ "type": "TheType", "host": "host_or_IP", "port": "port_number" }'})
 
         # Add a notice if they need to change the user/password from the default.
         if self.user == default_user or self.password == default_password:
