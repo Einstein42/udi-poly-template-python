@@ -23,11 +23,9 @@
   ],
   "store": {
     "developer": "milne.james@gmail.com",
-    "name": "Python Template for Polyglot",
     "price": 0,
     "recurring": 0,
     "recurring_interval": "month",
-    "recurring_period": 0,
-    "description": "Python Template for Polyglot"
+    "recurring_period": 0
   }
 }
