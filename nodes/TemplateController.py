@@ -116,19 +116,6 @@ class TemplateController(Controller):
         for node in self.nodes:
             self.nodes[node].reportDrivers()
 
-    def heartbeat(self):
-        """
-        Optional.
-        Sends a DON/DOF called by start and longPoll which allow users to
-        monitor that the nodeserver is still running
-        """
-        if self.hb == 0:
-            self.reportCmd("DON",2)
-            self.hb = 1
-        else:
-            self.reportCmd("DOF",2)
-            self.hb = 0
-
     def discover(self, *args, **kwargs):
         """
         Example
