@@ -296,7 +296,7 @@ class TemplateController(Controller):
                     ]
                 },
             ]
-        );
+        )
 
     def remove_notice_test(self,command):
         LOGGER.info('remove_notice_test: notices={}'.format(self.poly.config['notices']))
