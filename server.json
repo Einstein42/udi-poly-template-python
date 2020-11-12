@@ -23,7 +23,7 @@
   ],
   "store": {
     "developer": "milne.james@gmail.com",
-    "price": 0,
+    "price": 0.01,
     "recurring": 0,
     "recurring_interval": "month",
     "recurring_period": 0
