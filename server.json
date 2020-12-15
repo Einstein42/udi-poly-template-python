@@ -1,24 +1,31 @@
 {
-    "name": "PythonTemplate",
-    "docs": "https://github.com/Einstein42/udi-poly-template-python",
-    "type": "python3",
-    "executable": "template-poly.py",
-    "install": "install.sh",
-    "install_cloud": "install_cloud.sh",
-    "description": "Template Node Server",
-    "notice": "Your disclaimer here",
-    "shortPoll": "120",
-    "longPoll": "240",
-    "testMode": false,
-    "profile_version": "2.1.0",
-    "credits": [
-        {
-            "title": "mypoly: a NodeServer for Template Integration",
-            "author": "James Milne (Einstein.42)",
-            "version": "2.1.4",
-            "date": "November 8, 2017",
-            "source": "https://github.com/Einstein42/udi-poly-template-python",
-            "license": "https://raw.githubusercontent.com/Einstein42/udi-poly-template-python/master/LICENSE"
-        }
-    ]
+  "name": "PythonTemplate",
+  "docs": "https://github.com/Einstein42/udi-poly-template-python",
+  "type": "python3",
+  "executable": "template-poly.py",
+  "install": "install.sh",
+  "install_cloud": "install_cloud.sh",
+  "description": "Template Node Server",
+  "notice": "Your disclaimer here",
+  "shortPoll": "120",
+  "longPoll": "240",
+  "testMode": false,
+  "profile_version": "2.1.0",
+  "credits": [
+    {
+      "title": "mypoly: a NodeServer for Template Integration",
+      "author": "James Milne (Einstein.42)",
+      "version": "2.1.4",
+      "date": "November 8, 2017",
+      "source": "https://github.com/Einstein42/udi-poly-template-python",
+      "license": "https://raw.githubusercontent.com/Einstein42/udi-poly-template-python/master/LICENSE"
+    }
+  ],
+  "store": {
+    "developer": "milne.james@gmail.com",
+    "price": 0.01,
+    "recurring": 0,
+    "recurring_interval": "month",
+    "recurring_period": 0
+  }
 }

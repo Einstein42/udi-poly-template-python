@@ -116,19 +116,6 @@ class TemplateController(Controller):
         for node in self.nodes:
             self.nodes[node].reportDrivers()
 
-    def heartbeat(self):
-        """
-        Optional.
-        Sends a DON/DOF called by start and longPoll which allow users to
-        monitor that the nodeserver is still running
-        """
-        if self.hb == 0:
-            self.reportCmd("DON",2)
-            self.hb = 1
-        else:
-            self.reportCmd("DOF",2)
-            self.hb = 0
-
     def discover(self, *args, **kwargs):
         """
         Example
@@ -152,8 +139,8 @@ class TemplateController(Controller):
     def process_config(self, config):
         # this seems to get called twice for every change, why?
         # What does config represent?
-        LOGGER.info("process_config: Enter config={}".format(config));
-        LOGGER.info("process_config: Exit");
+        LOGGER.info("process_config: Enter config={}".format(config))
+        LOGGER.info("process_config: Exit")
 
     def heartbeat(self,init=False):
         LOGGER.debug('heartbeat: init={}'.format(init))
@@ -296,7 +283,7 @@ class TemplateController(Controller):
                     ]
                 },
             ]
-        );
+        )
 
     def remove_notice_test(self,command):
         LOGGER.info('remove_notice_test: notices={}'.format(self.poly.config['notices']))
